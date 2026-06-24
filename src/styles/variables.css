@@ -1,0 +1,26 @@
+:root {
+  /* Colors */
+  --color-bg-primary: #0f172a;
+  --color-bg-secondary: rgba(30, 41, 59, 0.65);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-accent: #ec4899; /* Vibrant pink for contrast */
+  --color-accent-hover: #f472b6;
+  
+  --color-vibe-high: #10b981;
+  --color-vibe-neutral: #38bdf8;
+  --color-vibe-low: #ef4444;
+
+  /* Typography */
+  --font-primary: 'Inter', system-ui, sans-serif;
+  
+  /* Shadows & Blurs */
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --blur-glass: blur(16px);
+  
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+}

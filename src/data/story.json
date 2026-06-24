@@ -1,0 +1,30 @@
+{
+  "startNode": "start",
+  "nodes": {
+    "start": {
+      "speaker": "Raka",
+      "text": "Eh barudak, kumaha damang? Jadi ngumpul di Dago jam sakieu?",
+      "choices": [
+        {
+          "text": "Jadi atuh, urang geus di jalan.",
+          "next": "node_01_a",
+          "setFlag": { "vibe": 1 }
+        },
+        {
+          "text": "Sori euy, urang rada telat meureun.",
+          "next": "node_01_b",
+          "setFlag": { "vibe": -1 }
+        }
+      ],
+      "bg_transition": "afternoon"
+    },
+    "node_01_a": {
+      "speaker": "Bima",
+      "text": "Sip, urang oge bentar deui nepi. Tong hilap meser kopi."
+    },
+    "node_01_b": {
+      "speaker": "Bima",
+      "text": "Duh, biasa weh manéh mah jam karet."
+    }
+  }
+}
