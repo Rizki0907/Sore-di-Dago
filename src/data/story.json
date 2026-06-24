@@ -8,23 +8,52 @@
         {
           "text": "Jadi atuh, urang geus di jalan.",
           "next": "node_01_a",
-          "setFlag": { "vibe": 1 }
+          "vibe_change": 2
         },
         {
           "text": "Sori euy, urang rada telat meureun.",
           "next": "node_01_b",
-          "setFlag": { "vibe": -1 }
+          "vibe_change": -2
         }
       ],
       "bg_transition": "afternoon"
     },
     "node_01_a": {
       "speaker": "Bima",
-      "text": "Sip, urang oge bentar deui nepi. Tong hilap meser kopi."
+      "text": "Sip, urang oge bentar deui nepi. Tong hilap meser kopi.",
+      "choices": [
+        { "text": "Aman.", "next": "node_debat_waktu" }
+      ]
     },
     "node_01_b": {
       "speaker": "Bima",
-      "text": "Duh, biasa weh manéh mah jam karet."
+      "text": "Duh, biasa weh manéh mah jam karet.",
+      "choices": [
+        { "text": "Hehe hampura.", "next": "node_debat_waktu" }
+      ]
+    },
+    "node_debat_waktu": {
+      "speaker": "Asep",
+      "text": "Heh buru atuh! Ieu kopi keburu tiis! Manéh milih nu mana, mie dogdog atau bala-bala?!",
+      "timer": 5,
+      "timeout_next": "node_timeout",
+      "choices": [
+        { "text": "Mie dogdog mantap!", "next": "node_akhir", "vibe_change": 2 },
+        { "text": "Bala-bala weh ganjel beuteung.", "next": "node_akhir", "vibe_change": 0 }
+      ],
+      "bg_transition": "sunset"
+    },
+    "node_timeout": {
+      "speaker": "Asep",
+      "text": "Ah lila teuing mikir! Geus weh urang pesenkeun cai herang wungkul!",
+      "choices": [
+        { "text": "Yah... padahal lapar.", "next": "node_akhir", "vibe_change": -3 }
+      ],
+      "bg_transition": "evening"
+    },
+    "node_akhir": {
+      "speaker": "Raka",
+      "text": "Geus ah tong ribut, nu penting mah ngumpul barudaks."
     }
   }
 }
