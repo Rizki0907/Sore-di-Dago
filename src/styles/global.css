@@ -9,7 +9,6 @@
 
 body {
   font-family: var(--font-primary);
-  background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   overflow: hidden; /* Ini adalah game, cegah scrolling */
   user-select: none; /* Cegah teks terseleksi agar feel seperti game */

@@ -1,59 +1,88 @@
 {
-  "startNode": "start",
+  "startNode": "intro_1",
   "nodes": {
-    "start": {
+    "intro_1": {
       "speaker": "Raka",
-      "text": "Eh barudak, kumaha damang? Jadi ngumpul di Dago jam sakieu?",
+      "text": "Woy barudaks! Kumaha, jadi urang ikut lomba JAWARA teh?",
       "choices": [
-        {
-          "text": "Jadi atuh, urang geus di jalan.",
-          "next": "node_01_a",
-          "vibe_change": 2
-        },
-        {
-          "text": "Sori euy, urang rada telat meureun.",
-          "next": "node_01_b",
-          "vibe_change": -2
-        }
+        { "text": "Jadi atuh! Gas ngeng!", "next": "intro_2_semangat", "vibe_change": 1 },
+        { "text": "Teuing euy, urang asa mager kieu.", "next": "intro_2_mager", "vibe_change": -1 }
       ],
       "bg_transition": "afternoon"
     },
-    "node_01_a": {
+    "intro_2_semangat": {
       "speaker": "Bima",
-      "text": "Sip, urang oge bentar deui nepi. Tong hilap meser kopi.",
+      "text": "Tah kitu! Urang geus boga ide gila. Kita bikin game RPG Open World seting na di Alun-Alun Bandung!",
       "choices": [
-        { "text": "Aman.", "next": "node_debat_waktu" }
+        { "text": "Wah mantap! Keren pisan ide na.", "next": "debat_ide", "setFlag": {"ide": "rpg"}, "vibe_change": 1 },
+        { "text": "Saha nu rek ngodingna euy?! Bikin nu simple weh atuh.", "next": "debat_ide", "setFlag": {"ide": "simple"} }
       ]
     },
-    "node_01_b": {
+    "intro_2_mager": {
       "speaker": "Bima",
-      "text": "Duh, biasa weh manéh mah jam karet.",
+      "text": "Ah manéh mah, diajak maju teh kalah mundur. Hayu atuh urang bikin nu santai weh, game dialog interaktif.",
       "choices": [
-        { "text": "Hehe hampura.", "next": "node_debat_waktu" }
+        { "text": "Tah mun dialog mah urang sanggup. Gas!", "next": "debat_ide", "setFlag": {"ide": "simple"}, "vibe_change": 1 },
+        { "text": "Emang hadiahna sabaraha kitu?", "next": "debat_ide", "vibe_change": -1 }
       ]
     },
-    "node_debat_waktu": {
+    "debat_ide": {
       "speaker": "Asep",
-      "text": "Heh buru atuh! Ieu kopi keburu tiis! Manéh milih nu mana, mie dogdog atau bala-bala?!",
-      "timer": 5,
-      "timeout_next": "node_timeout",
+      "text": "Heh, sateacan ngomongkeun game, ieu beuteung geus kukuruyukan! Urang pesen dahar heula, naon yeuh?!",
+      "timer": 6,
+      "timeout_next": "timeout_makan",
       "choices": [
-        { "text": "Mie dogdog mantap!", "next": "node_akhir", "vibe_change": 2 },
-        { "text": "Bala-bala weh ganjel beuteung.", "next": "node_akhir", "vibe_change": 0 }
+        { "text": "Seblak ceker atuh, ameh melek!", "next": "setelah_makan", "vibe_change": 1 },
+        { "text": "Indomie warkop weh standar.", "next": "setelah_makan" }
       ],
       "bg_transition": "sunset"
     },
-    "node_timeout": {
+    "timeout_makan": {
       "speaker": "Asep",
-      "text": "Ah lila teuing mikir! Geus weh urang pesenkeun cai herang wungkul!",
+      "text": "Lila teuing mikir manéh mah! Geus ah urang pesenkeun batagor weh kabeh, telat siah!",
       "choices": [
-        { "text": "Yah... padahal lapar.", "next": "node_akhir", "vibe_change": -3 }
-      ],
-      "bg_transition": "evening"
+        { "text": "Sip, nuhun Sep.", "next": "setelah_makan", "vibe_change": -1 }
+      ]
     },
-    "node_akhir": {
+    "setelah_makan": {
       "speaker": "Raka",
-      "text": "Geus ah tong ribut, nu penting mah ngumpul barudaks."
+      "text": "Alhamdulillah wareg. Jadi balik deui ka game. Mun urang bagi tugas, manéh sanggupna naon?",
+      "choices": [
+        { "text": "Urang bagian ngoding logika.", "next": "tugas_ngoding", "setFlag": {"role": "coder"} },
+        { "text": "Urang bagian visual jeung UI.", "next": "tugas_art", "setFlag": {"role": "artist"} }
+      ]
+    },
+    "tugas_ngoding": {
+      "speaker": "Bima",
+      "text": "Sip, mun manéh ngoding, urang nu ngatur manajemen project jeung sound effect nya.",
+      "choices": [
+        { "text": "Oke deal.", "next": "ending_check" }
+      ]
+    },
+    "tugas_art": {
+      "speaker": "Bima",
+      "text": "Alus, mun UI ku manéh, urang nu ngetik kodenya. Urang kudu kolaborasi euy.",
+      "choices": [
+        { "text": "Oke deal.", "next": "ending_check" }
+      ]
+    },
+    "ending_check": {
+      "speaker": "Asep",
+      "text": "Yeuh minuman na dateng. Jadi fix nya urang ngilu JAWARA?",
+      "bg_transition": "evening",
+      "choices": [
+        { "text": "Fix pisan! Barudaks never die!", "next": "ending_good", "requiredFlag": {"ide": "simple"} },
+        { "text": "Fix! Walau RPG Open World butuh waktu.", "next": "ending_good", "requiredFlag": {"ide": "rpg"} },
+        { "text": "Kumaha engke weh lah, nu penting nongkrong.", "next": "ending_neutral" }
+      ]
+    },
+    "ending_good": {
+      "speaker": "Raka",
+      "text": "Mantap! Ieu karek barudaks Dago! Hayu urang sabet juara Coding JAWARA 2026!"
+    },
+    "ending_neutral": {
+      "speaker": "Raka",
+      "text": "Hadeh, yaudah weh nu penting poe ieu urang nongkrong ngeunah. Game mah keri weh."
     }
   }
 }

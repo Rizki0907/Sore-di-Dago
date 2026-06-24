@@ -1,22 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import bgImage from '../assets/bg_warkop.png';
 import './Background.css';
 
 export function Background({ transitionState }) {
-  // Pemetaan state cerita ke warna gradien
-  const backgrounds = {
-    afternoon: 'linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%)',
-    sunset: 'linear-gradient(to bottom, #fa709a 0%, #fee140 100%)',
-    evening: 'linear-gradient(to bottom, #0f172a 0%, #1e293b 100%)'
+  // Gunakan gradien sebagai overlay di atas gambar untuk merubah "waktu/cuaca"
+  const overlays = {
+    afternoon: 'linear-gradient(to bottom, rgba(79, 172, 254, 0.1) 0%, rgba(0, 242, 254, 0) 100%)',
+    sunset: 'linear-gradient(to bottom, rgba(250, 112, 154, 0.6) 0%, rgba(254, 225, 64, 0.3) 100%)',
+    evening: 'linear-gradient(to bottom, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.9) 100%)'
   };
 
-  const currentBg = backgrounds[transitionState] || backgrounds.afternoon;
+  const currentOverlay = overlays[transitionState] || overlays.afternoon;
 
   return (
-    <motion.div
-      className="game-background"
-      animate={{ background: currentBg }}
-      transition={{ duration: 4, ease: "easeInOut" }}
-    />
+    <div className="game-background" style={{ backgroundImage: `url(${bgImage})` }}>
+      <motion.div
+        className="game-bg-overlay"
+        animate={{ background: currentOverlay }}
+        transition={{ duration: 4, ease: "easeInOut" }}
+      />
+    </div>
   );
 }
