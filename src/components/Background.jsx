@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import bgImage from '../assets/bg_warkop.png';
+import bgImage from '../assets/bg_warkop_wide.png';
 import './Background.css';
 
 export function Background({ transitionState }) {

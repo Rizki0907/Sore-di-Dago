@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TypewriterText } from './TypewriterText';
+import { ChromaKeyAvatar } from './ChromaKeyAvatar';
 import './DialogueBox.css';
 
 // Import avatar karakter yang sudah di-generate
-import avatarRaka from '../assets/avatar_Raka.png';
-import avatarBima from '../assets/avatar_Bima.png';
-import avatarAsep from '../assets/avatar_Asep.png';
+import avatarRaka from '../assets/avatar_Raka_full.png';
+import avatarBima from '../assets/avatar_Bima_full.png';
+import avatarAsep from '../assets/avatar_Asep_full.png';
 
 const avatars = {
   Raka: avatarRaka,
@@ -21,25 +22,29 @@ export function DialogueBox({ speaker, text }) {
     <div className="dialogue-wrapper">
       <AnimatePresence mode="wait">
         {currentAvatar && (
-          <motion.img 
+          <motion.div
             key={speaker}
-            src={currentAvatar} 
-            alt={speaker} 
-            className="character-avatar"
-            initial={{ opacity: 0, x: -50, scale: 0.9 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ type: 'spring', stiffness: 100 }}
-          />
+            className="character-portrait-container"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ type: 'spring', stiffness: 120 }}
+          >
+            <ChromaKeyAvatar 
+              src={currentAvatar} 
+              alt={speaker} 
+              className="character-avatar"
+            />
+          </motion.div>
         )}
       </AnimatePresence>
 
       <motion.div 
         key={text}
         className="dialogue-container glass-panel"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3 }}
       >
         {speaker && (
           <div className="speaker-name">

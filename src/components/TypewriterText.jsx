@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { playTypewriterBlip } from '../core/SoundManager';
 
-export function TypewriterText({ text, speed = 35 }) {
+export function TypewriterText({ text, speed = 40 }) {
   const [displayedText, setDisplayedText] = useState('');
   
   useEffect(() => {
@@ -15,7 +16,20 @@ export function TypewriterText({ text, speed = 35 }) {
         }
         return prev;
       });
+      let currentIndex = i;
       i++;
+      if (currentIndex < text.length) {
+        // Mainkan suara secara acak untuk mensimulasikan ketikan natural
+        if (currentIndex % 2 === 0 && text[currentIndex] !== ' ') {
+          playTypewriterBlip();
+        }
+
+        let delay = speed;
+        // Tambahkan jeda untuk tanda baca
+        if (['.', '!', '?'].includes(text[currentIndex])) {
+          delay = speed * 8;
+        }
+      }
       if (i >= text.length) {
         clearInterval(timer);
       }
