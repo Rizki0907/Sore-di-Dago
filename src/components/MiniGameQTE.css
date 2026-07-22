@@ -1,0 +1,99 @@
+.qte-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 550;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qte-card {
+  width: 90%;
+  max-width: 500px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid var(--color-glass-border);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+.qte-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.qte-title {
+  font-weight: 800;
+  color: var(--color-accent);
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.qte-timer {
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #ef4444;
+}
+
+.qte-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.qte-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent), #ec4899);
+  transition: width 0.1s linear;
+}
+
+.qte-instruction {
+  font-size: 1.1rem;
+  color: var(--color-text-primary);
+  margin-bottom: 20px;
+}
+
+.qte-buttons {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  justify-content: center;
+}
+
+.qte-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid var(--color-glass-border);
+  color: var(--color-text-primary);
+  padding: 16px 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qte-btn:hover {
+  background: rgba(236, 72, 153, 0.2);
+  border-color: var(--color-accent);
+}
+
+.qte-btn.done {
+  opacity: 0.4;
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.2);
+  cursor: not-allowed;
+}

@@ -175,16 +175,67 @@
       "emotion": "happy",
       "shake": false,
       "text": {
-        "su": "Beuteung wareg, pikiran tenang. Hayu urang mulai ngoding game Sore di Dago ieu ameh juara!",
-        "id": "Perut kenyang, pikiran tenang. Yuk kita mulai ngoding game Sore di Dago ini biar juara!"
+        "su": "Beuteung wareg, pikiran tenang. Racik kopi heula ameh semangat ngodingna!",
+        "id": "Perut kenyang, pikiran tenang. Racik kopi dulu biar semangat ngodingnya!"
       },
       "choices": [
         { 
-          "text": { "su": "GAS KEUN BARUDAKS!", "id": "GAS KAN BRO!" }, 
-          "next": "ending_good" 
+          "text": { "su": "⚡ RACIK KOPI WARKOP (QTE EVENT)", "id": "⚡ RACIK KOPI WARKOP (QTE EVENT)" }, 
+          "next": "qte_kopi_node" 
         }
       ],
-      "bg_transition": "night"
+      "bg_transition": "evening"
+    },
+    "qte_kopi_node": {
+      "speaker": "Asep",
+      "emotion": "normal",
+      "shake": false,
+      "isQTE": true,
+      "next_success": "bab2_intro",
+      "next_fail": "bab2_intro",
+      "text": {
+        "su": "Sip racikan kopi maneh mantap pisan, Raka! Siap rapat Bab 2!",
+        "id": "Sip racikan kopi lu mantap banget, Raka! Siap rapat Bab 2!"
+      }
+    },
+    "bab2_intro": {
+      "speaker": "Bima",
+      "emotion": "excited",
+      "shake": false,
+      "bg_transition": "evening",
+      "text": {
+        "su": "BAB 2: BRAINSTORMING. Ayeuna urang tentukeun judul paling mantap jeung unik pikeun karya urang!",
+        "id": "BAB 2: BRAINSTORMING. Sekarang kita tentuin judul paling mantap dan unik buat karya kita!"
+      },
+      "choices": [
+        { 
+          "text": { "su": "1. Warkop Simulator 2026", "id": "1. Warkop Simulator 2026" }, 
+          "next": "bab2_mekanik", "vibe_change": 1, "setFlag": {"judul": "Warkop Simulator"} 
+        },
+        { 
+          "text": { "su": "2. Dago Street Runner", "id": "2. Dago Street Runner" }, 
+          "next": "bab2_mekanik", "vibe_change": 1, "setFlag": {"judul": "Dago Runner"} 
+        },
+        { 
+          "text": { "su": "3. Tahu Bulat RPG Open World", "id": "3. Tahu Bulat RPG Open World" }, 
+          "next": "ending_secret", "vibe_change": 2, "setFlag": {"judul": "Tahu Bulat RPG"} 
+        }
+      ]
+    },
+    "bab2_mekanik": {
+      "speaker": "Raka",
+      "emotion": "happy",
+      "shake": false,
+      "text": {
+        "su": "Judul geus disepakati! Urang fokus ngoding mekanik dialog dwibahasa jeung animasi visual novelna ameh juri takjub!",
+        "id": "Judul udah disepakati! Kita fokus ngoding mekanik dialog dwibahasa dan animasi visual novelnya biar juri takjub!"
+      },
+      "choices": [
+        { 
+          "text": { "su": "Bungkus karya jeung siap Juara 1!", "id": "Bungkus karya dan siap Juara 1!" }, 
+          "next": "ending_good" 
+        }
+      ]
     },
     "setelah_makan_neutral": {
       "speaker": "Raka",

@@ -10,6 +10,26 @@ export function useDialogue() {
   const [history, setHistory] = useState([]);
   const [dialogueLog, setDialogueLog] = useState([]);
 
+  const [unlockedAchievements, setUnlockedAchievements] = useState(() => {
+    try {
+      const saved = localStorage.getItem('sore_dago_achievements');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+
+  const unlockAchievement = useCallback((id) => {
+    setUnlockedAchievements(prev => {
+      if (prev.includes(id)) return prev;
+      const next = [...prev, id];
+      try {
+        localStorage.setItem('sore_dago_achievements', JSON.stringify(next));
+      } catch (e) {}
+      return next;
+    });
+  }, []);
+
   const currentNode = engine.getNode(currentNodeId);
   const availableChoices = engine.getChoices(currentNodeId, flags);
 
@@ -21,7 +41,16 @@ export function useDialogue() {
         return [...prev, { nodeId: currentNodeId, speaker: currentNode.speaker, text: currentNode.text }];
       });
     }
-  }, [currentNodeId, currentNode]);
+
+    if (currentNode && currentNode.endingType) {
+      if (currentNode.endingType === 'ending_good') unlockAchievement('CHAMPION');
+      if (currentNode.endingType === 'ending_secret') unlockAchievement('SECRET');
+    }
+
+    if (currentNodeId === 'konflik_parah') {
+      unlockAchievement('EMOSI');
+    }
+  }, [currentNodeId, currentNode, unlockAchievement]);
 
   const makeChoice = useCallback((choice) => {
     setHistory(prev => [...prev, currentNodeId]);
@@ -56,6 +85,8 @@ export function useDialogue() {
     flags,
     history,
     dialogueLog,
+    unlockedAchievements,
+    unlockAchievement,
     makeChoice,
     handleTimeout,
     restartDialogue

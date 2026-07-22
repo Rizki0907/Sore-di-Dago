@@ -8,15 +8,29 @@ import { TimerBar } from './components/TimerBar';
 import { Background } from './components/Background';
 import { WarkopParticles } from './components/WarkopParticles';
 import { DialogueLogModal } from './components/DialogueLogModal';
+import { AchievementModal } from './components/AchievementModal';
+import { MiniGameQTE } from './components/MiniGameQTE';
 import { EndingScreen } from './components/EndingScreen';
 import { startBGM, toggleMute, playShakeSound, playButtonClick } from './core/SoundManager';
 import './styles/global.css';
 
 function App() {
-  const { currentNode, availableChoices, makeChoice, flags, handleTimeout, dialogueLog, restartDialogue } = useDialogue();
+  const { 
+    currentNode, 
+    availableChoices, 
+    makeChoice, 
+    flags, 
+    handleTimeout, 
+    dialogueLog, 
+    unlockedAchievements, 
+    unlockAchievement, 
+    restartDialogue 
+  } = useDialogue();
+
   const [bgState, setBgState] = useState('afternoon');
   const [language, setLanguage] = useState('su');
   const [isLogOpen, setIsLogOpen] = useState(false);
+  const [isAchieveOpen, setIsAchieveOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
@@ -38,6 +52,15 @@ function App() {
     playButtonClick();
     const muted = toggleMute();
     setIsMuted(muted);
+  };
+
+  const handleQTEComplete = (success) => {
+    if (success) {
+      unlockAchievement('BARISTA');
+      makeChoice({ next: currentNode.next_success, vibe_change: 2 });
+    } else {
+      makeChoice({ next: currentNode.next_fail, vibe_change: -1 });
+    }
   };
 
   const shakeVariants = {
@@ -91,10 +114,22 @@ function App() {
 
         <button 
           className="top-btn" 
-          onClick={() => { playButtonClick(); setIsLogOpen(true); }}
+          onClick={() => { 
+            playButtonClick(); 
+            setIsLogOpen(true); 
+            unlockAchievement('SEJARAWAN');
+          }}
           title="Dialogue History"
         >
           📜 Log
+        </button>
+
+        <button 
+          className="top-btn" 
+          onClick={() => { playButtonClick(); setIsAchieveOpen(true); }}
+          title="Trophy Gallery"
+        >
+          🏆 Trophy ({unlockedAchievements.length}/5)
         </button>
 
         <button 
@@ -117,11 +152,18 @@ function App() {
 
       <VibeMeter value={flags.vibe || 0} />
       
-      <ChoiceMenu 
-        choices={availableChoices} 
-        onSelect={makeChoice} 
-        language={language}
-      />
+      {currentNode.isQTE ? (
+        <MiniGameQTE 
+          onComplete={handleQTEComplete}
+          language={language}
+        />
+      ) : (
+        <ChoiceMenu 
+          choices={availableChoices} 
+          onSelect={makeChoice} 
+          language={language}
+        />
+      )}
       
       <DialogueBox 
         speaker={currentNode.speaker} 
@@ -133,6 +175,13 @@ function App() {
         isOpen={isLogOpen}
         onClose={() => setIsLogOpen(false)}
         logEntries={dialogueLog}
+        language={language}
+      />
+
+      <AchievementModal 
+        isOpen={isAchieveOpen}
+        onClose={() => setIsAchieveOpen(false)}
+        unlockedList={unlockedAchievements}
         language={language}
       />
     </motion.div>
