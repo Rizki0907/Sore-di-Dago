@@ -6,27 +6,27 @@ import './AchievementModal.css';
 export const ACHIEVEMENTS_DEF = [
   {
     id: 'CHAMPION',
-    title: { su: '🏆 BARUDAKS CHAMPION', id: '🏆 BARUDAKS CHAMPION' },
+    title: { su: 'BARUDAKS CHAMPION', id: 'BARUDAKS CHAMPION' },
     desc: { su: 'Buka Perfect Ending (Juara 1 Lomba JAWARA).', id: 'Buka Perfect Ending (Juara 1 Lomba JAWARA).' }
   },
   {
     id: 'BARISTA',
-    title: { su: '☕ KOPI MASTER WARKOP', id: '☕ KOPI MASTER WARKOP' },
+    title: { su: 'KOPI MASTER WARKOP', id: 'KOPI MASTER WARKOP' },
     desc: { su: 'Berhasil menyelesaikan QTE Racik Kopi Warkop.', id: 'Berhasil menyelesaikan QTE Racik Kopi Warkop.' }
   },
   {
     id: 'SEJARAWAN',
-    title: { su: '📜 SEJARAWAN DAGO', id: '📜 SEJARAWAN DAGO' },
+    title: { su: 'SEJARAWAN DAGO', id: 'SEJARAWAN DAGO' },
     desc: { su: 'Membuka modal Histori Dialog saat permainan.', id: 'Membuka modal Histori Dialog saat permainan.' }
   },
   {
     id: 'EMOSI',
-    title: { su: '⚡ EMOSI JIWA', id: '⚡ EMOSI JIWA' },
+    title: { su: 'EMOSI JIWA', id: 'EMOSI JIWA' },
     desc: { su: 'Memicu pertengkaran hebat antara Bima & Asep.', id: 'Memicu pertengkaran hebat antara Bima & Asep.' }
   },
   {
     id: 'SECRET',
-    title: { su: '⭐ RPG LEGEND', id: '⭐ RPG LEGEND' },
+    title: { su: 'RPG LEGEND', id: 'RPG LEGEND' },
     desc: { su: 'Membuka Secret Ending Open World RPG Bandung.', id: 'Membuka Secret Ending Open World RPG Bandung.' }
   }
 ];
@@ -39,13 +39,14 @@ export function AchievementModal({ isOpen, onClose, unlockedList = [], language 
       <div className="achieve-overlay" onClick={() => { playButtonClick(); onClose(); }}>
         <motion.div 
           className="achieve-card glass-panel"
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          initial={{ opacity: 0, scale: 0.92, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
+          exit={{ opacity: 0, scale: 0.92, y: 15 }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
           onClick={(e) => e.stopPropagation()}
         >
           <div className="achieve-header">
-            <h2>🏆 GALERI TROPHY & ACHIEVEMENT</h2>
+            <h2>GALERI PENCAPAAN</h2>
             <button className="close-btn" onClick={() => { playButtonClick(); onClose(); }}>✕</button>
           </div>
 
@@ -59,7 +60,9 @@ export function AchievementModal({ isOpen, onClose, unlockedList = [], language 
                     <span className="achieve-desc">{item.desc[language] || item.desc.su}</span>
                   </div>
                   <div className="achieve-status">
-                    {isUnlocked ? '✅ UNLOCKED' : '🔒 LOCKED'}
+                    <span className={`status-pill ${isUnlocked ? 'unlocked' : 'locked'}`}>
+                      {isUnlocked ? 'UNLOCKED' : 'LOCKED'}
+                    </span>
                   </div>
                 </div>
               );

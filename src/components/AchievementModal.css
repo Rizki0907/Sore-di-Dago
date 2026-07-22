@@ -4,8 +4,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
+  background: rgba(10, 15, 30, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 520;
   display: flex;
   justify-content: center;
@@ -14,86 +15,121 @@
 
 .achieve-card {
   width: 90%;
-  max-width: 650px;
+  max-width: 620px;
   max-height: 80vh;
   display: flex;
   flex-direction: column;
-  padding: 30px;
-  border-radius: 20px;
-  border: 1px solid var(--color-glass-border);
+  padding: 32px;
+  border-radius: 24px;
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
 }
 
 .achieve-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 15px;
-  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .achieve-header h2 {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  font-weight: 800;
   color: var(--color-accent);
   margin: 0;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.close-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.4);
 }
 
 .achieve-list {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding-right: 8px;
+  gap: 14px;
+  padding-right: 6px;
 }
 
 .achieve-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 18px;
-  border-radius: 12px;
+  padding: 16px 20px;
+  border-radius: 16px;
   transition: all 0.2s ease;
 }
 
 .achieve-item.unlocked {
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.08) 0%, rgba(16, 185, 129, 0.06) 100%);
+  border: 1px solid rgba(236, 72, 153, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .achieve-item.locked {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  opacity: 0.5;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  opacity: 0.55;
 }
 
 .achieve-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .achieve-title {
   font-weight: 700;
-  font-size: 1rem;
-  color: var(--color-text-primary);
+  font-size: 0.95rem;
+  color: #fff;
+  letter-spacing: 0.8px;
 }
 
 .achieve-desc {
   font-size: 0.85rem;
-  color: #a0aec0;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.4;
 }
 
-.achieve-status {
-  font-size: 0.8rem;
+.status-pill {
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
 }
 
-.achieve-item.unlocked .achieve-status {
-  color: #10b981;
+.status-pill.unlocked {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
-.achieve-item.locked .achieve-status {
-  color: #718096;
+.status-pill.locked {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
