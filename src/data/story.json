@@ -4,6 +4,7 @@
     "intro_1": {
       "speaker": "Raka",
       "emotion": "thinking",
+      "shake": false,
       "text": {
         "su": "Woy barudaks! Kumaha, jadi urang ikut lomba JAWARA teh?",
         "id": "Woi bro! Gimana nih, jadi kita ikut lomba JAWARA nggak?"
@@ -23,6 +24,7 @@
     "intro_2_semangat": {
       "speaker": "Bima",
       "emotion": "excited",
+      "shake": false,
       "text": {
         "su": "Tah kitu! Urang geus boga ide gila. Kita bikin game RPG Open World seting na di Alun-Alun Bandung! Pasti juara 1 ieu mah!",
         "id": "Nah gitu dong! Gue udah punya ide gila. Kita bikin game RPG Open World settingnya di Alun-Alun Bandung! Pasti juara 1 nih!"
@@ -41,6 +43,7 @@
     "intro_2_mager": {
       "speaker": "Bima",
       "emotion": "normal",
+      "shake": false,
       "text": {
         "su": "Ah manéh mah, diajak maju teh kalah mundur. Hayu atuh urang bikin nu santai weh, game dialog interaktif wae kumaha?",
         "id": "Ah lu mah, diajak maju malah mundur. Yaudah kita bikin yang santai aja, game dialog interaktif gimana?"
@@ -59,11 +62,11 @@
     "konflik_awal": {
       "speaker": "Bima",
       "emotion": "angry",
+      "shake": true,
       "text": {
         "su": "Maneh mah pesimis wae jadi jelema teh! Urang keur serius ieu ngabahas masa depan karya urang!",
         "id": "Lu mah pesimis terus jadi orang! Gue lagi serius nih ngebahas masa depan karya kita!"
       },
-      "shake": true,
       "choices": [
         { 
           "text": { "su": "Kalem bro, tong emosi kitu ah.", "id": "Kalem bro, jangan emosi gitu ah." }, 
@@ -78,6 +81,7 @@
     "rpg_secret_route": {
       "speaker": "Raka",
       "emotion": "happy",
+      "shake": false,
       "text": {
         "su": "Gas pol! Urang siap begadang banting tulang demi Open World Bandung!",
         "id": "Gas pol! Gue siap begadang banting tulang demi Open World Bandung!"
@@ -93,11 +97,12 @@
     "lapar_biasa": {
       "speaker": "Asep",
       "emotion": "normal",
+      "shake": false,
       "text": {
         "su": "Mantap idena! Tapi sateacan ngomongkeun game, ieu beuteung geus kukuruyukan euy! Urang pesen dahar heula, naon yeuh?!",
         "id": "Mantap idenya! Tapi sebelum ngomongin game, ini perut udah keroncongan nih! Kita pesen makan dulu, apa nih?!"
       },
-      "timer": 5,
+      "timer": 10,
       "timeout_next": "timeout_makan",
       "choices": [
         { 
@@ -114,12 +119,12 @@
     "debat_ide": {
       "speaker": "Asep",
       "emotion": "shouting",
+      "shake": true,
       "text": {
         "su": "GEUS AH TONG RIBUT! Sateacan ngomongkeun game, ieu beuteung geus kukuruyukan! Urang pesen dahar heula, naon yeuh?!",
         "id": "UDAH AH JANGAN RIBUT! Sebelum ngomongin game, ini perut udah keroncongan! Kita pesen makan dulu, apa nih?!"
       },
-      "shake": true,
-      "timer": 5,
+      "timer": 10,
       "timeout_next": "timeout_makan",
       "choices": [
         { 
@@ -136,6 +141,7 @@
     "timeout_makan": {
       "speaker": "Asep",
       "emotion": "shouting",
+      "shake": false,
       "text": {
         "su": "Lama amat mikirnya! Yaudah urang pesenkan Indomie goreng pake telur 3 porsi titik!",
         "id": "Lama amat mikirnya! Yaudah gue pesenin Indomie goreng pake telur 3 porsi titik!"
@@ -150,11 +156,11 @@
     "konflik_parah": {
       "speaker": "Bima",
       "emotion": "angry",
+      "shake": true,
       "text": {
         "su": "Ah geus lah, mun kieu mah moal beres-beres! Urang balik heula!",
         "id": "Ah udah lah, kalau gini mah nggak bakal kelar! Gue balik duluan!"
       },
-      "shake": true,
       "choices": [
         {
           "text": { "su": "Yaudah balik sana!", "id": "Yaudah balik sana!" },
@@ -167,6 +173,7 @@
     "setelah_makan_good": {
       "speaker": "Raka",
       "emotion": "happy",
+      "shake": false,
       "text": {
         "su": "Beuteung wareg, pikiran tenang. Hayu urang mulai ngoding game Sore di Dago ieu ameh juara!",
         "id": "Perut kenyang, pikiran tenang. Yuk kita mulai ngoding game Sore di Dago ini biar juara!"
@@ -182,6 +189,7 @@
     "setelah_makan_neutral": {
       "speaker": "Raka",
       "emotion": "normal",
+      "shake": false,
       "text": {
         "su": "Hdeh, yaudah weh nu penting poe ieu urang nongkrong ngeunah. Game mah kumaha engke weh.",
         "id": "Hdeh, yaudah deh yang penting hari ini kita nongkrong enak. Game mah gimana nanti aja."

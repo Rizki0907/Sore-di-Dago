@@ -25,6 +25,14 @@
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
+.ending-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 .ending-badge {
   padding: 6px 16px;
   border-radius: 20px;
@@ -32,8 +40,34 @@
   font-weight: 800;
   font-size: 0.85rem;
   letter-spacing: 1.5px;
-  margin-bottom: 20px;
   text-transform: uppercase;
+}
+
+.ending-lang-toggle {
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ending-lang-toggle button {
+  background: transparent;
+  border: none;
+  color: #a0aec0;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.ending-lang-toggle button.active {
+  background: var(--color-accent);
+  color: #fff;
+  box-shadow: 0 0 8px var(--color-accent);
 }
 
 .ending-title {

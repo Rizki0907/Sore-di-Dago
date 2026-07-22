@@ -48,7 +48,7 @@ function App() {
   if (currentNode && currentNode.isEnding) {
     return (
       <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
-        <Background transitionState={bgState} />
+        <Background transitionState={bgState} language={language} />
         <WarkopParticles />
         <EndingScreen 
           endingType={currentNode.endingType}
@@ -70,12 +70,13 @@ function App() {
 
   return (
     <motion.div
+      key={currentNode ? currentNode.speaker : 'app'}
       animate={currentNode.shake ? "shake" : "still"}
       variants={shakeVariants}
       style={{ width: '100vw', height: '100vh', position: 'relative' }}
       onClick={() => startBGM()}
     >
-      <Background transitionState={bgState} />
+      <Background transitionState={bgState} language={language} />
       <WarkopParticles />
       
       {/* Top Control Bar */}
