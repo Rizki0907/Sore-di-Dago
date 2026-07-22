@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import './VibeMeter.css';
 
 export function VibeMeter({ value }) {
-  // Asumsi nilai vibe dari -5 (buruk) sampai 5 (bagus), diubah ke 0% - 100%
   const percentage = Math.min(Math.max((value + 5) * 10, 0), 100);
   
   let color = 'var(--color-vibe-neutral)';

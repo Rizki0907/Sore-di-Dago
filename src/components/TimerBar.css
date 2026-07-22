@@ -10,6 +10,6 @@
 
 .timer-fill {
   height: 100%;
-  background-color: var(--color-vibe-low); /* Warna merah untuk tekanan/tegang */
+  background-color: var(--color-vibe-low);
   width: 100%;
 }

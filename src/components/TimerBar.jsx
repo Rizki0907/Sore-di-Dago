@@ -6,7 +6,6 @@ export function TimerBar({ duration, onTimeout }) {
   const [key, setKey] = useState(0);
 
   useEffect(() => {
-    // Memaksa komponen untuk me-remount/restart animasi ketika durasi/node berubah
     setKey(prev => prev + 1);
   }, [duration]);
 

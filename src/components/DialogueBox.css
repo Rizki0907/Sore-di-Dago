@@ -5,16 +5,16 @@
   width: 100vw; 
   z-index: 100;
   display: flex;
-  justify-content: flex-end; /* Dorong kotak dialog ke sisi kanan layar */
+  justify-content: flex-end; 
   align-items: flex-end; 
   pointer-events: none; 
-  padding-right: 5%; /* Beri celah 5% di sisi kanan */
+  padding-right: 5%;
 }
 
 .character-portrait-container {
   position: absolute;
-  left: 5%; /* Beri sedikit jarak dari batas paling kiri */
-  bottom: -15px; /* Tenggelamkan sedikit badannya agar potongannya tak terlihat */
+  left: 5%;
+  bottom: -15px; 
   z-index: 101;
   pointer-events: none; 
 }
@@ -32,13 +32,13 @@
 }
 
 .dialogue-container {
-  width: 65%; /* Kotak dialog hanya memakan 65% layar bagian kanan */
+  width: 65%;
   margin-bottom: 25px; 
   min-height: 160px;
-  padding: 30px 40px; /* Padding normal, tidak perlu offset raksasa lagi */
+  padding: 30px 40px; 
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Paksa isi rata kiri */
+  align-items: flex-start; 
   pointer-events: auto; 
   text-align: left; 
   box-sizing: border-box; 
@@ -52,7 +52,7 @@
   letter-spacing: 2px;
   margin-bottom: 8px;
   text-align: left; 
-  align-self: flex-start; /* Paksa nempel kiri */
+  align-self: flex-start;
 }
 
 .dialogue-text {
@@ -61,5 +61,5 @@
   color: var(--color-text-primary);
   text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
   text-align: left; 
-  align-self: flex-start; /* Paksa nempel kiri */
+  align-self: flex-start; 
 }

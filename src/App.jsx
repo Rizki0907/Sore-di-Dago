@@ -6,19 +6,59 @@ import { ChoiceMenu } from './components/ChoiceMenu';
 import { VibeMeter } from './components/VibeMeter';
 import { TimerBar } from './components/TimerBar';
 import { Background } from './components/Background';
+import { WarkopParticles } from './components/WarkopParticles';
+import { DialogueLogModal } from './components/DialogueLogModal';
+import { EndingScreen } from './components/EndingScreen';
+import { startBGM, toggleMute, playShakeSound, playButtonClick } from './core/SoundManager';
 import './styles/global.css';
 
 function App() {
-  const { currentNode, availableChoices, makeChoice, flags, handleTimeout } = useDialogue();
+  const { currentNode, availableChoices, makeChoice, flags, handleTimeout, dialogueLog, restartDialogue } = useDialogue();
   const [bgState, setBgState] = useState('afternoon');
-  const [language, setLanguage] = useState('su'); // 'su' = Sunda, 'id' = Indonesia
+  const [language, setLanguage] = useState('su');
+  const [isLogOpen, setIsLogOpen] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
-  // Pantau perubahan background
   useEffect(() => {
-    if (currentNode && currentNode.bg_transition) {
-      setBgState(currentNode.bg_transition);
+    startBGM();
+  }, []);
+
+  useEffect(() => {
+    if (currentNode) {
+      if (currentNode.bg_transition) {
+        setBgState(currentNode.bg_transition);
+      }
+      if (currentNode.shake) {
+        playShakeSound();
+      }
     }
   }, [currentNode]);
+
+  const handleToggleMute = () => {
+    playButtonClick();
+    const muted = toggleMute();
+    setIsMuted(muted);
+  };
+
+  const shakeVariants = {
+    shake: { x: [-15, 15, -15, 15, -10, 10, 0], transition: { duration: 0.4 } },
+    still: { x: 0 }
+  };
+
+  if (currentNode && currentNode.isEnding) {
+    return (
+      <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
+        <Background transitionState={bgState} />
+        <WarkopParticles />
+        <EndingScreen 
+          endingType={currentNode.endingType}
+          vibeScore={flags.vibe || 0}
+          onRestart={restartDialogue}
+          language={language}
+        />
+      </div>
+    );
+  }
 
   if (!currentNode) {
     return (
@@ -28,30 +68,43 @@ function App() {
     );
   }
 
-  const shakeVariants = {
-    shake: { x: [-15, 15, -15, 15, -10, 10, 0], transition: { duration: 0.4 } },
-    still: { x: 0 }
-  };
-
   return (
     <motion.div
       animate={currentNode.shake ? "shake" : "still"}
       variants={shakeVariants}
       style={{ width: '100vw', height: '100vh', position: 'relative' }}
+      onClick={() => startBGM()}
     >
       <Background transitionState={bgState} />
+      <WarkopParticles />
       
-      {/* Tombol Toggle Bahasa */}
-      <div className="language-toggle">
+      {/* Top Control Bar */}
+      <div className="top-control-bar">
         <button 
-          className={language === 'su' ? 'active' : ''} 
-          onClick={() => setLanguage('su')}
+          className="top-btn" 
+          onClick={handleToggleMute}
+          title="Audio Soundscape"
+        >
+          {isMuted ? '🔇 Audio Off' : '🔊 Audio On'}
+        </button>
+
+        <button 
+          className="top-btn" 
+          onClick={() => { playButtonClick(); setIsLogOpen(true); }}
+          title="Dialogue History"
+        >
+          📜 Log
+        </button>
+
+        <button 
+          className={`top-btn ${language === 'su' ? 'active' : ''}`} 
+          onClick={() => { playButtonClick(); setLanguage('su'); }}
         >
           SU
         </button>
         <button 
-          className={language === 'id' ? 'active' : ''} 
-          onClick={() => setLanguage('id')}
+          className={`top-btn ${language === 'id' ? 'active' : ''}`} 
+          onClick={() => { playButtonClick(); setLanguage('id'); }}
         >
           ID
         </button>
@@ -71,7 +124,15 @@ function App() {
       
       <DialogueBox 
         speaker={currentNode.speaker} 
-        text={currentNode.text[language]} 
+        text={currentNode.text ? currentNode.text[language] : ''} 
+        emotion={currentNode.emotion || 'normal'}
+      />
+
+      <DialogueLogModal 
+        isOpen={isLogOpen}
+        onClose={() => setIsLogOpen(false)}
+        logEntries={dialogueLog}
+        language={language}
       />
     </motion.div>
   );

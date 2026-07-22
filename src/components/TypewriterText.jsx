@@ -10,7 +10,6 @@ export function TypewriterText({ text, speed = 40 }) {
     
     const timer = setInterval(() => {
       setDisplayedText((prev) => {
-        // Prevent adding undefined if index out of bounds
         if (i < text.length) {
           return prev + text.charAt(i);
         }
@@ -19,13 +18,11 @@ export function TypewriterText({ text, speed = 40 }) {
       let currentIndex = i;
       i++;
       if (currentIndex < text.length) {
-        // Mainkan suara secara acak untuk mensimulasikan ketikan natural
         if (currentIndex % 2 === 0 && text[currentIndex] !== ' ') {
           playTypewriterBlip();
         }
 
         let delay = speed;
-        // Tambahkan jeda untuk tanda baca
         if (['.', '!', '?'].includes(text[currentIndex])) {
           delay = speed * 8;
         }

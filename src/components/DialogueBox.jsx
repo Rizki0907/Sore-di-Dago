@@ -4,26 +4,45 @@ import { TypewriterText } from './TypewriterText';
 import { ChromaKeyAvatar } from './ChromaKeyAvatar';
 import './DialogueBox.css';
 
-// Import avatar karakter yang sudah di-generate
-import avatarRaka from '../assets/avatar_Raka_full.png';
-import avatarBima from '../assets/avatar_Bima_full.png';
-import avatarAsep from '../assets/avatar_Asep_full.png';
+import avatarRakaNormal from '../assets/avatar_Raka_full.png';
+import avatarRakaThinking from '../assets/avatar_Raka_thinking.png';
+import avatarRakaHappy from '../assets/avatar_Raka_happy.png';
+
+import avatarBimaNormal from '../assets/avatar_Bima_full.png';
+import avatarBimaExcited from '../assets/avatar_Bima_excited.png';
+import avatarBimaAngry from '../assets/avatar_Bima_angry.png';
+
+import avatarAsepNormal from '../assets/avatar_Asep_full.png';
+import avatarAsepShouting from '../assets/avatar_Asep_shouting.png';
 
 const avatars = {
-  Raka: avatarRaka,
-  Bima: avatarBima,
-  Asep: avatarAsep
+  Raka: {
+    normal: avatarRakaNormal,
+    thinking: avatarRakaThinking,
+    happy: avatarRakaHappy,
+  },
+  Bima: {
+    normal: avatarBimaNormal,
+    excited: avatarBimaExcited,
+    angry: avatarBimaAngry,
+  },
+  Asep: {
+    normal: avatarAsepNormal,
+    shouting: avatarAsepShouting,
+    hungry: avatarAsepShouting,
+  }
 };
 
-export function DialogueBox({ speaker, text }) {
-  const currentAvatar = avatars[speaker];
+export function DialogueBox({ speaker, text, emotion = 'normal' }) {
+  const speakerAvatars = avatars[speaker];
+  const currentAvatar = (speakerAvatars && speakerAvatars[emotion]) || (speakerAvatars && speakerAvatars.normal);
 
   return (
     <div className="dialogue-wrapper">
       <AnimatePresence mode="wait">
         {currentAvatar && (
           <motion.div
-            key={speaker}
+            key={`${speaker}_${emotion}`}
             className="character-portrait-container"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
