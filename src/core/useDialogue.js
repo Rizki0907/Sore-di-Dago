@@ -9,7 +9,6 @@ export function useDialogue() {
   const [flags, setFlags] = useState({ vibe: 0 });
   const [history, setHistory] = useState([]);
   const [dialogueLog, setDialogueLog] = useState([]);
-
   const [unlockedAchievements, setUnlockedAchievements] = useState(() => {
     try {
       const saved = localStorage.getItem('sore_dago_achievements');
@@ -18,6 +17,9 @@ export function useDialogue() {
       return [];
     }
   });
+
+  const currentNode = engine.getNode(currentNodeId);
+  const availableChoices = engine.getChoices(currentNodeId, flags);
 
   const unlockAchievement = useCallback((id) => {
     setUnlockedAchievements(prev => {
@@ -29,9 +31,6 @@ export function useDialogue() {
       return next;
     });
   }, []);
-
-  const currentNode = engine.getNode(currentNodeId);
-  const availableChoices = engine.getChoices(currentNodeId, flags);
 
   useEffect(() => {
     if (currentNode && currentNode.text && currentNode.speaker) {
